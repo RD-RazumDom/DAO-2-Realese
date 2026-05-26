@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAO2ERA Модуль аудио оповещения - Настройки</title>
+    <!-- <link rel="stylesheet" href="../white_theme.css"> -->
+    <link rel="stylesheet" href="../dark_theme.css">
+    <script src="../theme.js"></script>
+    <link rel="icon" href="../img/favicon.ico" type="image/png">
+    <script>
+        function httpGetAsync(theUrl, callback) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200 && !!callback)
+                    callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+        
+        function onUserChanged(res) {
+            if(res.indexOf('Request complete') == -1)
+                alert('Невозможно изменить учетные данные аккаунта!');
+            else
+                showNotification('Учетные данные успешно обновлены');
+        }
+    
+        function onUserChange(id) {
+            name = document.getElementById('user'+ id + '_name').value;
+            password = document.getElementById('user'+ id + '_password').value;
+            httpGetAsync('/authchange.cgi?id=' + id + '&user=' + name + '&password=' + password, onUserChanged);
+        }
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 2000);
+            }, 10);
+        }
+        
+        function onLoad() {
+            // Check for saved theme
+            checkTheme();
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+    <div class="container">
+        
+
+        <main>
+            <fieldset class="settings-container" style="padding: 12px;">
+                <legend>Настройки</legend>
+                
+                <form action="setup18.html" method="post"><fieldset class="setu" style="float:left;width:285px;"><legend>Администратор</legend><ol><center>Доступ к страницам <br>Визуализация и Настройки</center><li><label>Имя: </label><input name="HT_USR0" id="HT_USR0" type="text" autocomplete="off" value="admin"></li><li><label>Пароль: </label><input name="HT_PWD0" id="HT_PWD0" type="password" autocomplete="off" value="admin"></li><li><input type="submit" class="setup-apply" value="Применить"></li></ol></fieldset><fieldset class="setu" style="width:285px;"><legend>Пользователь</legend><ol><center>Доступ только к странице <br>Визуализация</center><li><label>Имя: </label><input name="HT_USR1" id="HT_USR1" type="text" autocomplete="off" value="user"></li><li><label>Пароль: </label><input name="HT_PWD1" id="HT_PWD1" type="password" autocomplete="off" value="user"></li><li><input type="submit" class="setup-apply" value="Применить"></li></ol></fieldset></form>
+             
+            </fieldset>
+            
+        <div id="cont">
+            <form action='setup12.html' method='POST' onSubmit='s8sub()' id='MForm'>
+                
+                <fieldset class="setu" style="width:440px;"><legend>Настройка сети</legend>
+                    <br>
+                    <ol><li>
+                        <label> MAC адрес: </label>
+                        <input id="FW_MAC" name="FW_MAC" type="text" value='<!--#FW_MAC-->'>>
+                        <br>
+                    </li>
+                    <li>
+                        <label> IPv4 адрес: </label>
+                        <input id="CFG_IP" name="CFG_IP" type="text" value='<!--#CFG_IP-->'>
+                    </li><li>
+                        <label> IPv4 маска: </label>
+                        <input id="CFG_MASK" name="CFG_MASK" type="text" value='<!--#CFG_MASK-->'>
+                    </li><li>
+                        <label> IPv4 шлюз: </label>
+                        <input id="CFG_GW" name="CFG_GW" type="text" value='<!--#CFG_GW-->'>
+                    </li><li>
+                        <label>Использовать DHCP: </label>
+                        <input id="CFG_DHCP" name="CFG_DHCP" type="checkbox">
+                        <input id="CFG_DHCP_OFF" name="CFG_DHCP" type="hidden" value="off">
+                    </li><li>
+                        <label> IPv6: 'FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF'</label>
+                    </li><li>
+                        <input type="submit" value="Применить"> в модуль</li>
+                        <li class="lis">
+                            <a class="abtn" href="../net.json" download="">&nbsp; Сохранить &nbsp;&nbsp;</a> в файл</li>
+                            <li>
+                                <button onclick="readFileEth(document.getElementById(&quot;file&quot;))">Загрузить</button>
+                                <input type="file" id="file">
+                            </li><li>
+                                <label id="NETIF" style="text-align:left;">ID PHY: 0007c0f1<br>100BASE-TX: поддержка full duplex, поддержка half duplex<br>10BASE-T: поддержка full duplex, поддержка half duplex<br>Процесс автосогласования: завершен<br>Удаленной неисправности нет<br>Автосогласование: возможно<br>Link Status: поднят <br>Удлиненный кадр, jabber: отсутствуют<br>Extended Capabilities: поддерживает<br>Функция автосогласования: разрешена<br>Питание: работает<br>Режим: рестарт завершен<br>Скорость: 100Mbps<br>Режим: full duplex<br></label></li></ol></fieldset>
+            <br>
+            </form>
+        </div>
+    </div>
+    <div id="descr"></div>
+    <script src="../ldn.js"></script>
+        </main>
+
+        
+    </div>
+    <div class="sidebar">
+    <div class="sidebar-logo">
+        <img src="../img/logo.png" alt="Logo">
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="../ru/settings.html" class="active">Настройки</a></li>
+        <li><a href="https://razumdom.ru/catalog/modbus_tcp/interfeysy/1951/">Описание на сайте</a></li>
+        <li><a href="play.html">Вернуться к медиа</a></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <title>Ethernet Module</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="site0.css">
+    <script src="../ldc.js"></script>
+</head>
+
+<body onload="updnet()">
+    <div id="content"><input type='submit' onclick="oc()" id="cl" value='<<'>
+        <div id="cont">
+            <form action='setup12.shtml' method='POST' onSubmit='s8sub()' id='MForm'>
+                <fieldset class='setu' style='width:440;'>
+                    <legend>Настройка сети</legend>
+                    <ol>
+                        <li><label> MAC адрес: </label><input id='FW_MAC' name='FW_MAC' type='text' value='<!--#FW_MAC-->'><br>
+                        <li><label> IPv4 адрес: </label><input id='CFG_IP' name='CFG_IP' type='text' value='<!--#CFG_IP-->'>
+                        <li><label> IPv4 маска: </label><input id='CFG_MASK' name='CFG_MASK' type='text' value='<!--#CFG_MASK-->'>
+                        <li><label> IPv4 шлюз: </label><input id='CFG_GW' name='CFG_GW' type='text' value='<!--#CFG_GW-->'>
+                        <li><label>Использовать DHCP: </label><input id='CFG_DHCP' name='CFG_DHCP' type='checkbox' <!--#CFG_DHCP-->><input id='CFG_DHCP_OFF' name='CFG_DHCP' type='hidden' value='off'>
+                    
+                    </ol>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div id="descr"></div>
+    <script src="../ldn.js"></script>
+</body>
+
+</html>
