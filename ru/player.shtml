@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAO2ERA Модуль аудио оповещения</title>
     <link rel="stylesheet" href="../style.css">
+    <script src="../scripts/theme.js"></script>
     <script src="../scripts/requests.js"></script>
     <link rel="icon" href="../img/favicon.ico" type="image/png">
 </head>
 
-<body onload="onLoad()">
+<body>
 
     <nav class="top-navbar">
         <div class="navbar-content">
@@ -44,13 +45,13 @@
                         <button class="btn-control stop" onclick="onStop()">Стоп</button>
                     </div>
                     
-                    <div class="volume-control">
-                        <span class="volume-icon">🔊</span>
-                        <input class="slider-volume" onchange="setVolume(this.value)" type="range" name="volume" id="volume" min="0" max="100" autocomplete="off">
-                        <span id="volume-percentage">0%</span>
-                    </div>
-                </fieldset>
-                
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                    <input class="slider-volume" type="range" name="volume" id="volume" min="0" max="254" autocomplete="off">
+                <span id="volume-percentage">0%</span>
+            </div>
+
+            </fieldset>
                 <fieldset class="media-setup">
                     <legend>Источник</legend>
                     <div class="form-group">

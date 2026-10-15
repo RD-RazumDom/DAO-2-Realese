@@ -8,18 +8,17 @@
 </head>
 
 <body onload="updnet()">
-    <div id="content"><input type='submit' onclick="oc()" id="cl" value='<<'>
+    <div id="content"><input type='button' onclick="oc()" id="cl" value='<<'>
         <div id="cont">
             <form action='setup12.shtml' method='POST' onSubmit='s8sub()' id='MForm'>
-                <fieldset class='setu' style='width:440;'>
+                <fieldset class='setu' style='width:440px;'>
                     <legend>Настройка сети</legend>
                     <ol>
-                        <li><label> MAC адрес: </label><input id='FW_MAC' name='FW_MAC' type='text' value='<!--#FW_MAC-->'><br>
-                        <li><label> IPv4 адрес: </label><input id='CFG_IP' name='CFG_IP' type='text' value='<!--#CFG_IP-->'>
-                        <li><label> IPv4 маска: </label><input id='CFG_MASK' name='CFG_MASK' type='text' value='<!--#CFG_MASK-->'>
-                        <li><label> IPv4 шлюз: </label><input id='CFG_GW' name='CFG_GW' type='text' value='<!--#CFG_GW-->'>
-                        <li><label>Использовать DHCP: </label><input id='CFG_DHCP' name='CFG_DHCP' type='checkbox' <!--#CFG_DHCP-->><input id='CFG_DHCP_OFF' name='CFG_DHCP' type='hidden' value='off'>
-                    
+                        <li><label> MAC адрес: </label><input id='FW_MAC' name='FW_MAC' type='text' value='<!--#FW_MAC-->'><br></li>
+                        <li><label> IPv4 адрес: </label><input id='CFG_IP' name='CFG_IP' type='text' value='<!--#CFG_IP-->'></li>
+                        <li><label> IPv4 маска: </label><input id='CFG_MASK' name='CFG_MASK' type='text' value='<!--#CFG_MASK-->'></li>
+                        <li><label> IPv4 шлюз: </label><input id='CFG_GW' name='CFG_GW' type='text' value='<!--#CFG_GW-->'></li>
+                        <li><label>Использовать DHCP: </label><input id='CFG_DHCP' name='CFG_DHCP' type='checkbox' value='on' <!--#CFG_DHCP-->></li>
                     </ol>
                 </fieldset>
             </form>
