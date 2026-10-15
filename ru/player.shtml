@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAO2ERA Модуль аудио оповещения</title>
     <link rel="stylesheet" href="../style.css">
+    <script src="../scripts/theme.js"></script>
     <script src="../scripts/requests.js"></script>
     <link rel="icon" href="../img/favicon.ico" type="image/png">
 </head>
 
-<body onload="onLoad()">
+<body>
 
     <nav class="top-navbar">
         <div class="navbar-content">
@@ -24,48 +25,41 @@
 
     <div class="container">
         <main>
-            <div class="dsc" id="descr">
-                Описание:
-                <br>
-                Опрос устройств Modbus производится последовательно по указанным параметрам и если адрес больше 0 и меньше 255
-                <br>
-                Опрос включается вместе с запуском сценариев.
-                <br>
-                Таблица опроса доступна в регистрах HR5300-HR5550
+    <div class="content-wrapper">
+        <fieldset>
+            <legend>Медиаплеер</legend>
+
+            <div class="media-control">
+                <div class="control-buttons">
+                    <button class="btn-control play" type="button" onclick="onPlay()">Играть</button>
+                    <button class="btn-control pause" type="button" onclick="onPause()">Пауза</button>
+                    <button class="btn-control stop" type="button" onclick="onStop()">Стоп</button>
+                </div>
+
+                <div class="volume-control">
+                    <span class="volume-icon">🔊</span>
+                    <input class="slider-volume" type="range" name="volume" id="volume"
+                           min="0" max="254" autocomplete="off"
+                           value="<!--#MD_VOLUME-->">
+                    <span id="volume-percentage">0%</span>
+                </div>
             </div>
-            <input class="sb1" type="submit" onclick="oc()" id="cl" value=">>">
-            
-            <div class="content-wrapper">
-                <fieldset class="media-control">
-                    <legend>Управление медиа</legend>
-                    <div class="control-buttons">
-                        <button class="btn-control play" onclick="onPlay()">Играть</button>
-                        <button class="btn-control pause" onclick="onPause()">Пауза</button>
-                        <button class="btn-control stop" onclick="onStop()">Стоп</button>
-                    </div>
-                    
-                    <div class="volume-control">
-                        <span class="volume-icon">🔊</span>
-                        <input class="slider-volume" onchange="setVolume(this.value)" type="range" name="volume" id="volume" min="0" max="100" autocomplete="off">
-                        <span id="volume-percentage">0%</span>
-                    </div>
-                </fieldset>
-                
-                <fieldset class="media-setup">
-                    <legend>Источник</legend>
-                    <div class="form-group">
-                        <input type="text" name="source_url" id="source_url" autocomplete="off" value="<!--#MD_SRC_URL-->">
-                    </div>
-                    <p class="note">Используйте источник вида: rts://80.237.210.79:80/, ftp://80.237.210.79/path, sd://filename</p>
-                </fieldset>
-                
-                <fieldset class="sd-listing">
-                    <legend>Содержимое SD-карты</legend>
-                    <select name="sd_listing" id="sd_listing" size="10"></select>
-                    <p class="note">Используйте двойной клик на выбранном файле для проигрывания</p>
-                </fieldset>
+
+            <div class="form-group">
+                <label for="source_url">Источник</label>
+                <input type="text" name="source_url" id="source_url"
+                       autocomplete="off" value="<!--#MD_SRC_URL-->">
+                <div class="note">Поддерживаются: rts://, ftp://, sd://</div>
             </div>
-        </main>
+        </fieldset>
+
+        <fieldset class="sd-listing">
+            <legend>Файлы на SD-карте</legend>
+            <select name="sd_listing" id="sd_listing" size="10"></select>
+            <div class="note">Двойной клик — воспроизвести выбранный файл</div>
+        </fieldset>
+    </div>
+</main>
     </div>
 </body>
 </html>

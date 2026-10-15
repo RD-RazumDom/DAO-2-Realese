@@ -29,7 +29,7 @@ body,
     left: 0;
     right: 0;
     overflow: auto;
-    width: 400;
+    width: 400px;
     border-radius: 20px;
     margin: 0px auto;
     height: 250px;
@@ -89,7 +89,7 @@ body,
     top: 0;
     bottom: 0;
     overflow: auto;
-    background-image: url('./img/bgb.gif');
+    background-image: url('./img/bgl.gif');
 }
 
 #descr {
@@ -109,7 +109,7 @@ body,
 
 #about {
     width: auto;
-    padding: 0 20 0 10;
+    padding: 0 20px 0 10px;
 }
 
 #btn_algo_setup {
@@ -212,13 +212,13 @@ form {
     color: #0f0;
     background: #4c4c4c;
     line-height: 32px;
-    text-indent: 10;
+    text-indent: 10px;
     height: fit-content;
 }
 
 .set1 label,
 .lic label {
-    width: 180;
+    width: 180px;
     text-align: left;
 }
 
@@ -285,7 +285,7 @@ fieldset ol li ol {
 }
 
 .lis {
-    border-width: 5 0 3 0px;
+    border-width: 5px 0 3px 0;
     border-color: #fff0;
 }
 
@@ -377,7 +377,7 @@ fieldset legend {
 }
 
 .tr {
-    padding: 1 1 1 4px;
+    padding: 1px 1px 1px 4px;
 }
 
 .tm ol li,
@@ -475,9 +475,9 @@ ul.tm a,
     color: #00f;
     box-shadow: inset 2px 2px 5px #68fc;
     border-radius: 6px;
-    padding: 3 5 3 5;
+    padding: 3px 5px;
     border: 1px solid #90b0ff;
-    width: 390;
+    width: 390px;
     margin-top: 3px;
     background: aliceblue
 }
