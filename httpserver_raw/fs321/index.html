@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DAO1EM Embedded WEB-server</title>
+	<meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="site.css" />
+	
+	<script type="text/javascript">
+	    var sd_list = [ <!--#MD_SD_LIST--> null];
+	    
+	    function httpGetAsync(theUrl, callback) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() { 
+    		    if (xmlHttp.readyState == 4 && xmlHttp.status == 200 && !!callback)
+        		callback(xmlHttp.responseText);
+		}
+		xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+		xmlHttp.send(null);
+	    }
+	    
+	    function onLoad() {
+		FileSelect = document.getElementById('sd_listing');
+		for(index=0; index < sd_list.length; index++) {
+		    if(sd_list[index] != null)
+			FileSelect.options[FileSelect.options.length] = new Option(sd_list[index], sd_list[index]);
+		}
+		document.getElementById('sd_listing').ondblclick = function(){
+		    //alert(this.options[this.selectedIndex].value);
+		    document.getElementById('source_url').value = "sd://" + this.options[this.selectedIndex].value;
+		    onPlay();
+		};
+	    }
+	    
+	    function onPlay() {
+		httpGetAsync("/play.cgi?url=" + document.getElementById("source_url").value, null);
+	    }
+	    function onPause() {
+		httpGetAsync("/pause.cgi", null);
+	    }
+	    function onStop() {
+		httpGetAsync("/stop.cgi", null);
+	    }
+	    function setVolume(value) {
+		httpGetAsync("/volume.cgi?val="+value, null);
+	    }
+	    function onLogout() {
+	    
+	    }
+	</script>
+</head>
+<body onLoad="onLoad()">
+    <header>
+    <a href="http://www.razumdom.ru/">
+        <img src="./img/logo.png" border="0" alt="Razumdom logo" title="Razumdom logo">
+    </a>
+    <h1>DAO1EM Embedded WEB-server</h1>
+    
+    <!-- Перенесли меню внутрь header -->
+    <menu>
+        <ul>
+            <li><a href='/en/settings.shtml'>Settings</a></li>
+            <li><a href='/401.html'>Logout</a></li>
+        </ul>
+    </menu>
+</header>
+    
+    <main>
+	<div class="media-control">
+	    <button class="button-play" onclick="onPlay()">Play</button>
+	    <button class="button-pause" onclick="onPause()">Pause</button>
+	    <button class="button-stop" onclick="onStop()">Stop</button>
+	    <input class="slider-volume" onchange="setVolume(this.value)" type="range" name="volume" id="volume" min="0" max="254" autocomplete="off" value="<!--#MD_VOLUME-->">
+	</div>
+	
+	<fieldset class="media-setup">
+	    <label for="source_url">Media url</label>
+	    <input type="text" name="source_url" id="source_url" autocomplete="off" value="<!--#MD_SRC_URL-->">
+	    <label class="note">Please use url like this: rts://80.237.210.79:80/, ftp://80.237.210.79/path, sd://filename </label> 
+	</fieldset>
+	
+	<fieldset class="sd-listing">
+	    <label for="sd_listing">SD-card listing</label>
+	    <select name="sd_listing" id="sd_listing" size="10" on>
+	    </select>
+	    <label class="note">Please use double click, to play selected file</label> 
+	    <!--input type="file" name="uploadField" -->
+	</fieldset>
+    </main>
+    
+	<footer class="footer">
+	    <p> <!--#MD_STATUS_S--></p>
+	    <p>Firmware revision - <!--#FW_REV--></p>
+	</footer>
+</body>
+</html>
+
