@@ -1,0 +1,259 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: beige;
+}
+
+header {
+    position: relative;
+    /* Точка отсчета для меню */
+    background-color: #70b5e0;
+    /* Синий фон на всю шапку */
+    border: 1.5px solid #0b97f5;
+    /* Общая рамка для шапки (как была у вас на h1) */
+    border-radius: 5px;
+    padding: 15px 20px;
+    /* Внутренние отступы, чтобы элементы не прилипали к краям */
+    margin-bottom: 20px;
+
+    /* Включаем Flexbox, чтобы выстроить картинку и h1 в ряд */
+    display: flex;
+    align-items: center;
+    /* Выравнивание картинки и текста по вертикали */
+    gap: 20px;
+    /* Отступ между логотипом и заголовком */
+}
+
+/* Стили для ссылки с картинкой внутри header */
+header>a {
+    display: block;
+    /* Делаем ссылку блоком */
+    line-height: 0;
+    /* Убираем лишние нижние отступы у картинки */
+    flex-shrink: 0;
+    /* Запрещаем картинке сжиматься */
+}
+
+header>a img {
+    max-height: 50px;
+    /* Ограничиваем высоту картинки (настройте под себя) */
+    width: auto;
+    display: block;
+}
+
+header>h1 {
+    margin: 0;
+    /* Сбрасываем внешние отступы браузера */
+    color: white;
+    font-size: 24px;
+    /* Настройте размер шрифта по вкусу */
+    /* text-align: center; — теперь flex управляет позицией, центрировать рамкой больше не нужно */
+}
+
+main {
+    width: 600px;
+    margin: 0px auto;
+}
+
+main>h1 {
+    text-align: center;
+}
+
+menu {
+    position: absolute;
+    bottom: 25px;
+    /* Прижимает меню к нижнему краю внутри синей шапки */
+    right: 20px;
+    /* Сдвиг к правому краю шапки */
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+    /* Выводит меню поверх синего фона */
+}
+
+menu ul a {
+    display: block;
+    color: #fff;
+    /* Изменили с #333 на белый */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    /* Чуть увеличили для читаемости */
+    line-height: 32px;
+    padding: 0 15px;
+    list-style: none !important;
+}
+
+menu ul li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    /* Легкое прозрачное свечение */
+    border-radius: 4px;
+}
+
+menu ul a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 32px;
+    padding: 0 15px;
+}
+
+menu ul li {
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0
+}
+
+menu ul li.current-menu-item {
+    background: #ddd
+}
+
+menu ul li:hover {
+    background: #f6f6f6
+}
+
+menu ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    padding: 0
+}
+
+menu ul ul li {
+    float: none;
+    width: 200px
+}
+
+menu ul ul a {
+    line-height: 120%;
+    padding: 10px 15px
+}
+
+menu ul ul ul {
+    top: 0;
+    left: 100%
+}
+
+menu ul li:hover>ul {
+    display: block
+}
+
+footer {
+    height: 5em;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+.media-control,
+.media-setup,
+.sd-listing {
+    width: 300px;
+    margin: 0px auto;
+    margin-bottom: 0px;
+    margin-bottom: 0px;
+    margin-bottom: 0px;
+    border: solid;
+    border-top-width: medium;
+    border-top-color: currentcolor;
+    border-right-width: medium;
+    border-right-color: currentcolor;
+    border-bottom-width: medium;
+    border-bottom-color: currentcolor;
+    border-left-width: medium;
+    border-left-color: currentcolor;
+  border-radius: 10px;
+  border-width: 1.5px;
+  border-color: cadetblue;
+    padding: 21px;
+    border-width: 1.5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.sd-listing>select {
+    width: 300px;
+}
+
+.note {
+    color: GrayText;
+    font-size: 8pt;
+}
+
+.setup-accounts {
+    width: 300px;
+    margin: 0px auto;
+}
+
+.media-control button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: left;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    padding-left: 16px;
+    vertical-align: middle;
+    width: 92px;
+}
+
+button.button-play {
+    background-image: url(./img/buttons/play.png);
+}
+
+button.button-pause {
+    background-image: url(./img/buttons/pause.png);
+}
+
+button.button-stop {
+    background-image: url(./img/buttons/stop.png);
+}
+
+
+.slider-volume {
+    width: 260px;
+}
+
+.setup-accounts>fieldset label {
+    width: 100px;
+    float: left;
+    padding-top: 2px;
+}
+
+.setup-accounts>fieldset input {
+    width: 160px;
+    float: right;
+}
+
+.setup-accounts>fieldset button {
+    width: 165px;
+    float: right;
+}
+
+.media-setup>input {
+    width: 200px;
+    float: right;
+}
+
+.media-setup>label {
+    float: left;
+    padding-top: 5px;
+}
+
+.footer {
+    font-family: Arial, sans-serif;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #494747;
+    /* Задайте ваш цвет фона, чтобы контент под футером не просвечивал */
+    z-index: 9999;
+}

@@ -1,0 +1,219 @@
+function initSidePanel() {
+    var descr = document.getElementById('descr');
+    var clBtn = document.getElementById('cl');
+
+    descr.style.display = 'none';
+    clBtn.style.display = 'block';
+    clBtn.style.right = '2px';
+    descr.style.right = '-245px';
+}
+
+var rt;
+var tid;
+var isAnimating = false;
+
+function oc() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    var descr = document.getElementById('descr');
+    var clBtn = document.getElementById('cl');
+
+    if (clBtn.value == '>>') {
+        descr.style.display = 'block';
+        rt = -265;
+
+        tid = setInterval(function () {
+            rt += 20;
+            descr.style.right = rt + 'px';
+            clBtn.style.right = (rt + 265) + 'px';
+
+            if (rt >= 0) {
+                clearInterval(tid);
+                clBtn.value = '<<';
+                descr.style.right = '0px';
+                clBtn.style.right = '245px';
+                isAnimating = false;
+            }
+        }, 5);
+    } else {
+        rt = 265;
+
+        tid = setInterval(function () {
+            rt -= 20;
+            descr.style.right = rt + 'px';
+            clBtn.style.right = (rt + 265) + 'px';
+
+            if (rt <= -265) {
+                clearInterval(tid);
+                clBtn.value = '>>';
+                descr.style.display = 'none';
+                clBtn.style.right = '0px';
+                isAnimating = false;
+            }
+        }, 5);
+    }
+}
+
+var sd_list = [/*#MD_SD_LIST*/ null];
+var isSidebarVisible = false;
+var currentVolume = 100;
+
+function onLoad() {
+    initSidePanel();
+    initFileList();
+    initVolumeControl();
+    initEventListeners();
+    checkTheme();
+}
+
+function initFileList() {
+    const fileSelect = document.getElementById('sd_listing');
+
+    fileSelect.innerHTML = '';
+
+    sd_list.forEach(file => {
+        if (file) {
+            const option = new Option(file, file);
+            fileSelect.add(option);
+        }
+    });
+
+    fileSelect.ondblclick = function () {
+        const selectedFile = this.options[this.selectedIndex].value;
+        document.getElementById('source_url').value = "sd://" + selectedFile;
+        onPlay();
+    };
+}
+if (typeof isVolumeInitialized === 'undefined') {
+    var isVolumeInitialized = false;
+}
+
+function initVolumeControl() {
+    const volumeSlider = document.getElementById('volume');
+    if (!volumeSlider) return;
+
+    currentVolume = Math.round((/*#MD_VOLUME*/ 1));
+    volumeSlider.value = currentVolume;
+
+    updateVolumeIndicator(currentVolume);
+
+    volumeSlider.addEventListener('input', (event) => {
+        updateVolumeIndicator(Math.round(event.target.value));
+    });
+
+
+    volumeSlider.addEventListener('change', (event) => {
+        currentVolume = Math.round(event.target.value);
+
+
+        setVolume(currentVolume);
+
+    });
+}
+
+
+function initEventListeners() {
+    document.getElementById('cl').addEventListener('click', oc);
+
+}
+
+
+// запросы для плеера
+function onPlay() {
+    const sourceUrl = document.getElementById("source_url").value;
+    if (sourceUrl) {
+        httpGetAsync("/play.cgi?url=" + encodeURIComponent(sourceUrl), null);
+        showNotification("Воспроизведение начато");
+    } else {
+        showNotification("Укажите источник для воспроизведения", true);
+    }
+}
+
+function onPause() {
+    const sourceUrl = document.getElementById("source_url").value;
+    httpGetAsync("/pause.cgi?url=" + encodeURIComponent(sourceUrl), null);
+    showNotification("Воспроизведение приостановлено");
+}
+
+function onStop() {
+    httpGetAsync("/stop.cgi", null);
+    showNotification("Воспроизведение остановлено");
+}
+
+
+
+// слайдер громкости
+function setVolume(value) {
+    currentVolume = parseInt(value);
+
+
+    const serverValue = Math.round((currentVolume / 100));
+
+
+    httpGetAsync("/volume.cgi?val=" + serverValue, null);
+
+
+    updateVolumeIndicator(currentVolume);
+}
+
+function updateVolumeIndicator(value) {
+    document.getElementById('volume-percentage').textContent = value + '%';
+}
+
+
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('descr');
+    const button = document.getElementById('cl');
+
+    isSidebarVisible = !isSidebarVisible;
+
+    if (isSidebarVisible) {
+        sidebar.style.right = '10';
+        button.style.right = '200px';
+        button.value = '<<';
+    } else {
+        sidebar.style.right = '-200px';
+        button.style.right = '0';
+        button.value = '>>';
+    }
+}
+
+
+function showNotification(message, isError = false) {
+    const notification = document.createElement('div');
+    notification.className = 'notification' + (isError ? ' error' : '');
+    console.log(isError ? 'ошибка выполнения' : '');
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
+    }, 10);
+}
+
+function httpGetAsync(theUrl, callback) {
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState === 4) {
+            if (xmlHttp.status === 200 && callback) {
+                callback(xmlHttp.responseText);
+            } else if (xmlHttp.status !== 200) {
+                showNotification("Ошибка запроса: " + xmlHttp.statusText, true);
+            }
+        }
+    };
+    xmlHttp.open("GET", theUrl, true);
+    xmlHttp.send(null);
+}
+
+
+
+window.addEventListener('DOMContentLoaded', onLoad);

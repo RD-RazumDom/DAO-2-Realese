@@ -1,0 +1,483 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0px;
+}
+
+html,
+body,
+.container {
+    height: 100%;
+}
+
+#startf {
+    border: 0;
+    text-align: center;
+    box-shadow: none;
+    background: none;
+}
+
+#startpage {
+    position: relative;
+    top: 50%;
+    transition: top .3s linear;
+    text-align: center;
+    background: #d2e9ff;
+    padding: 10px 0 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    width: 400;
+    border-radius: 20px;
+    margin: 0px auto;
+    height: 250px;
+    margin-top: -175px;
+}
+
+#cl {
+    float: right;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background: #ef7b19;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    width: 30px;
+    height: 80px;
+    border: 0;
+    box-shadow: 0px 4px 5px #6d748fd9, inset 0px 1px 1px #fde3be;
+}
+
+#header {
+    position: fixed;
+    background: #333c;
+    color: ivory;
+    text-align: center;
+    width: 100%;
+    height: 20px;
+}
+
+#menu {
+    border: none;
+    position: absolute;
+    padding: 10px;
+    width: 215px;
+    min-height: calc(100% - 40px);
+    height: max-content;
+    top: 20px;
+    font-weight: bold;
+    background: #333c;
+}
+
+#contentfr {
+    position: fixed;
+    left: 230px;
+    top: 20px;
+    min-height: calc(100% - 24px);
+    height: auto;
+    width: calc(100% - 234px);
+}
+
+#content {
+    border: 0px solid;
+    background: #777;
+    padding: 10px 0 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    background-image: url('./img/bgb.gif');
+}
+
+#descr {
+    border: 0px solid;
+    background: #111;
+    color: #58fb58;
+    text-align: justify;
+    position: absolute;
+    width: 244px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    overflow: auto;
+    display: none;
+}
+
+#about {
+    width: auto;
+    padding: 0 20 0 10;
+}
+
+#btn_algo_setup {
+    background-image: url('./img/edit.png');
+}
+
+#btn_algo_ins {
+    background-image: url('./img/add.png');
+}
+
+#btn_algo_cut {
+    background-image: url('./img/del.png');
+}
+
+#btn_algo_delete {
+    background-image: url('./img/del.png');
+}
+
+#btn_algo_apply {
+    background-image: url('./img/apply.png');
+}
+
+#btn_algo_cancel {
+    background-image: url('./img/cut.png');
+}
+
+#btn_algo_setup,
+#btn_algo_ins,
+#btn_algo_cut,
+#btn_algo_delete,
+#btn_algo_apply,
+#btn_algo_cancel {
+    background-repeat: no-repeat;
+    background-color: #0000;
+    width: 32px;
+    height: 32px;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+#MB_SPEED,
+#MB_ADDR,
+#MBOPT,
+#MB_MODE,
+#MBREPFUN {
+    width: 15ch;
+    height: 24px;
+    float: right;
+}
+
+table {
+    font-size: 13px;
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px grey;
+    border: 1px solid #0000;
+}
+
+input[type=text] {
+    width: 100px;
+}
+
+td {
+    text-align: center;
+    text-align: -moz-center;
+    text-align: -webkit-center;
+    color: ivory;
+    box-shadow: 1px 1px 3px black;
+    border: 1px solid #0000;
+    border-radius: 1px;
+}
+
+thead,
+tfoot {
+    background-color: #B4CDEF;
+    color: #0303FF;
+}
+
+th,
+.thc {
+    text-align: -moz-center;
+    text-align: -webkit-center;
+    background-color: #999;
+    color: azure;
+    box-shadow: 1px 1px 3px black;
+    border: 1px solid #0000;
+    border-radius: 1px;
+}
+
+form {
+    width: fit-content;
+    width: -moz-fit-content;
+    margin-bottom: 2px;
+}
+
+.alg_editor {
+    width: auto;
+    text-align: left;
+    border: 0;
+    color: #0f0;
+    background: #4c4c4c;
+    line-height: 32px;
+    text-indent: 10;
+    height: fit-content;
+}
+
+.set1 label,
+.lic label {
+    width: 180;
+    text-align: left;
+}
+
+.setu input[type=number],
+input[type=password],
+.setu input[type=text] {
+    float: right;
+}
+
+.prof_edit {
+    text-align: left;
+}
+
+.alg_editor form {
+    float: right;
+}
+
+li label {
+    text-align: right;
+    font-size: 15px;
+    display: inline-table;
+}
+
+fieldset {
+    background: #555a;
+    color: ivory;
+    margin-bottom: 10px;
+    padding: 0 0 0 0;
+    border: none;
+    width: fit-content;
+    width: -moz-fit-content;
+    border-radius: 2px;
+    box-shadow: 2px 2px 7px #123456;
+}
+
+.lic,
+.alg_editor,
+form,
+#startf {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+fieldset ol {
+    padding: 5px;
+}
+
+fieldset ol li {
+    font-size: 100%;
+    color: #dbebfe;
+    background: #555e;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 5px;
+    list-style: none;
+    padding: 5px;
+    margin-bottom: 5px;
+    line-height: 22px;
+    box-shadow: 2px 2px 5px black;
+}
+
+fieldset ol li ol {
+    padding: 1px;
+}
+
+.lis {
+    border-width: 5 0 3 0px;
+    border-color: #fff0;
+}
+
+fieldset input[type=text],
+fieldset input[type=time],
+fieldset input[type=date],
+fieldset input[type=password],
+fieldset select,
+fieldset textarea {
+    background: #ecf4ff;
+    border: none;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    font: 15px Arial, Tahoma, Calibri;
+    outline: none;
+    padding: 3px 0 3px 0;
+    width: fit-content;
+    width: -moz-fit-content;
+    box-shadow: inset 1px 1px 3px #68fc;
+    text-align: center;
+}
+
+fieldset select {
+    width: 90px;
+    width: fit-content;
+    width: -moz-fit-content;
+    text-align: left;
+    font: 15px Consolas, Lucida Sans;
+}
+
+fieldset input[type=number],
+fieldset input[type=color] {
+    background: #ecf4ff;
+    border: none;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    font: 15px Arial, Tahoma, Calibri;
+    outline: none;
+    padding: 3px 0 3px 0;
+    width: 8ch;
+    box-shadow: inset 1px 1px 3px #68fc;
+    text-align: center;
+}
+
+fieldset input:not([type=submit]):focus,
+fieldset textarea:focus {
+    background: #EAEAEA;
+}
+
+fieldset button,
+fieldset input[type=submit],
+fieldset input[type=button],
+form button,
+form input[type=submit],
+form input[type=button],
+.abtn {
+    background: #3e94f9;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font: 18px Georgia, "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 1px black;
+    text-transform: uppercase;
+    padding: 5px 5px 5px 5px;
+    width: 160px;
+    text-decoration: none;
+    box-shadow: 2px 2px 3px #6b7ab2e0, inset 1px 1px 1px #b2d7f5;
+}
+
+fieldset button:hover {
+    background: #3e94f9;
+    cursor: pointer;
+}
+
+fieldset legend {
+    text-align: center;
+    font-weight: bold;
+    font-size: 110%;
+    background: #ffffff00;
+    margin: 0 auto;
+    position: relative;
+    top: 13px;
+}
+
+.tr {
+    padding: 1 1 1 4px;
+}
+
+.tm ol li,
+.ts {
+    font-size: 100%;
+    color: #dbebfe;
+    background: #a7a7a76b;
+    border-width: 0px;
+    border-radius: 3px;
+    list-style: none;
+    margin-bottom: 5px;
+    line-height: 22px;
+    box-shadow: 2px 2px 5px black;
+}
+
+ul.tm {
+    padding: 0;
+    margin: 0;
+}
+
+ul.tm ol {
+    padding: 0;
+}
+
+ol li ul {
+    padding-right: 3px;
+    padding-left: 30px;
+}
+
+ul.tm a:focus {
+    background: #00f;
+    color: #ff8;
+}
+
+ul.tm a:hover {
+    background: #9bf;
+}
+
+ul.tm a,
+.ma {
+    text-decoration: none;
+    color: #faffbb;
+    background: #1f1f1f;
+    display: block;
+    padding-left: 4px;
+    box-shadow: 2px 2px 5px #333c;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.str0 {
+    stroke: blue;
+    stroke-width: 5
+}
+
+.str1 {
+    stroke: #ff6464;
+    stroke-width: 1.25;
+    stroke-dasharray: 2.5 6.25
+}
+
+.fil3 {
+    fill: none
+}
+
+.fil2 {
+    fill: #d7ff7e
+}
+
+.fil1 {
+    fill: #88cbff
+}
+
+.fil4 {
+    fill: red
+}
+
+.fil0 {
+    fill: yellow;
+    fill-rule: nonzero
+}
+
+.fnt0 {
+    font-weight: normal;
+    font-size: 18px;
+    font-family: 'Arial'
+}
+
+#_ENIN,
+#_ENCO,
+#_ENDI,
+#_ENIR,
+#MBREPANS {
+    text-align: left;
+    color: #00f;
+    box-shadow: inset 2px 2px 5px #68fc;
+    border-radius: 6px;
+    padding: 3 5 3 5;
+    border: 1px solid #90b0ff;
+    width: 390;
+    margin-top: 3px;
+    background: aliceblue
+}
